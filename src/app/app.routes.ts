@@ -11,7 +11,6 @@ export const routes: Routes = [
     {
         path:'product/show/:id',
         component:Productview,
-        data:{renderMode:'client'}
     },
     {
         path:'users',
