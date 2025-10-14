@@ -6,7 +6,8 @@ import { User } from './user/user';
 export const routes: Routes = [
     {
         path:'',
-        component:Home
+        component:Home,
+        title:'Home'
     },
     {
         path:'product/show/:id',
@@ -14,6 +15,7 @@ export const routes: Routes = [
     },
     {
         path:'users',
-        component:User
+        component:User,
+        title:'Users'
     }
 ];
