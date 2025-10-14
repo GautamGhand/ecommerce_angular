@@ -10,7 +10,8 @@ export const routes: Routes = [
     },
     {
         path:'product/show/:id',
-        component:Productview
+        component:Productview,
+        data:{renderMode:'client'}
     },
     {
         path:'users',
