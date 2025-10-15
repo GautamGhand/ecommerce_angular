@@ -7,10 +7,10 @@ export const serverRoutes: ServerRoute[] = [
   },
   {
     path: 'product/show/:id',
-    renderMode: RenderMode.Server,
+    renderMode: RenderMode.Client,
   },
   {
     path: '',
-    renderMode: RenderMode.Server,
+    renderMode: RenderMode.Client,
   },
 ];
