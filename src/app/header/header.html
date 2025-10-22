@@ -1,0 +1,58 @@
+<header class="bg-blue-600 text-white shadow-md">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      
+      <!-- Logo -->
+      <div class="flex-shrink-0 text-xl font-semibold">
+        <a routerLink="/" class="hover:text-gray-200 transition-colors">MyStore</a>
+      </div>
+
+      <!-- Desktop Menu -->
+      <nav class="hidden md:flex space-x-6">
+        <a routerLink="/" routerLinkActive="font-bold border-b-2 border-white"
+           [routerLinkActiveOptions]="{ exact: true }"
+           class="hover:text-gray-200 transition-colors">Home</a>
+
+        <a routerLink="/users" routerLinkActive="font-bold border-b-2 border-white"
+           class="hover:text-gray-200 transition-colors">Users</a>
+
+        <a routerLink="/cart" routerLinkActive="font-bold border-b-2 border-white"
+           class="hover:text-gray-200 transition-colors">Cart</a>
+      </nav>
+
+      <!-- Mobile Menu Button -->
+      <button (click)="toggleMenu()" class="md:hidden focus:outline-none">
+        @if(!isMenuOpen){
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+               stroke-width="2" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m0 6H4" />
+          </svg>
+        }
+        @if(isMenuOpen){
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+               stroke-width="2" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        }
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Dropdown Menu -->
+  @if (isMenuOpen) {
+    <nav class="md:hidden bg-blue-700 px-4 py-3 space-y-2">
+      <a routerLink="/" (click)="toggleMenu()"
+         routerLinkActive="font-bold underline"
+         [routerLinkActiveOptions]="{ exact: true }"
+         class="block text-white hover:text-gray-200">Home</a>
+
+      <a routerLink="/users" (click)="toggleMenu()"
+         routerLinkActive="font-bold underline"
+         class="block text-white hover:text-gray-200">Users</a>
+
+      <a routerLink="/cart" (click)="toggleMenu()"
+         routerLinkActive="font-bold underline"
+         class="block text-white hover:text-gray-200">Cart</a>
+    </nav>
+  }
+</header>

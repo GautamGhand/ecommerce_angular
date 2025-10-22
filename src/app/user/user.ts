@@ -7,11 +7,10 @@ import { Edituser } from '../edituser/edituser';
 
 @Component({
   selector: 'app-user',
-  imports: [DatePipe, LazyLoadImageModule, RouterLink, Edituser],
+  imports: [DatePipe, LazyLoadImageModule, Edituser],
   templateUrl: './user.html',
   styleUrl: './user.css',
 })
-
 export class User {
   users: any[] = [];
   selectedUser: any = null;
