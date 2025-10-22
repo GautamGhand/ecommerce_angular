@@ -1,27 +1,44 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Cartservice } from '../services/cartservice';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { selectProducts } from '../store/selector';
+import { DecimalPipe } from '@angular/common';
 
 @Component({
   selector: 'app-cart',
-  imports: [],
+  imports: [DecimalPipe],
   templateUrl: './cart.html',
   styleUrl: './cart.css',
 })
 export class Cart {
   cartItems: any[] = [];
+  private store = inject(Store);
+  cartProducts$: Observable<any> = this.store.select(selectProducts);
 
   constructor(private cartService: Cartservice) {
     this.getCart();
+    this.getCartTotal();
   }
 
   getCart() {
-    this.cartService.getUserCart(5).subscribe({
-      next: (response: any) => {
-        this.cartItems = response.carts;
+    this.cartProducts$.subscribe({
+      next: (products) => {
+        this.cartItems = products;
       },
-      error: (error) => {
-        console.error('Error fetching cart:', error);
-      },
+      error: (err) => console.error('Error:', err),
     });
+    // this.cartService.getUserCart(5).subscribe({
+    //   next: (response: any) => {
+    //     this.cartItems = response.carts;
+    //   },
+    //   error: (error) => {
+    //     console.error('Error fetching cart:', error);
+    //   },
+    // });
+  }
+
+  getCartTotal(): number {
+    return this.cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
   }
 }
