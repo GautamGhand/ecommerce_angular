@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Product } from '../store/model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -9,16 +11,12 @@ export class Cartservice {
 
   constructor(private http: HttpClient) {}
 
-  addToCart() {
-    const body = {
-      userId: 5,
-      products: [
-        { id: 144, quantity: 4 },
-        { id: 98, quantity: 1 },
-      ],
+  addToCart(userId: number, products: Product[]): Observable<any> {
+    const payload = {
+      userId,
+      products: products.map((p) => ({ id: p.id, quantity: p.quantity || 1 })),
     };
-
-    return this.http.post(`${this.base_url}/add`, body);
+    return this.http.post(`${this.base_url}/add`, payload);
   }
 
   getUserCart(userId: number) {

@@ -1,9 +1,11 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { Productservice } from '../services/productservice';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { Title } from '@angular/platform-browser';
 import { Cartservice } from '../services/cartservice';
+import { Store } from '@ngrx/store';
+import { addToCart } from '../store/action';
 
 @Component({
   selector: 'app-productview',
@@ -14,6 +16,7 @@ import { Cartservice } from '../services/cartservice';
 export class Productview {
   product: any = {};
   productId: number;
+  private store = inject(Store);
 
   constructor(
     private productService: Productservice,
@@ -37,14 +40,20 @@ export class Productview {
     });
   }
 
-  addToCart(id: number) {
-    this.cartService.addToCart().subscribe({
-      next: (response) => {
-        alert('Added To Cart Successfully!');
-      },
-      error: (err) => {
-        console.error('Error:', err);
-      },
-    });
+  addToCart() {
+    this.store.dispatch(
+      addToCart({
+        userId: 5,
+        products: this.product,
+      })
+    );
+    // this.cartService.addToCart().subscribe({
+    //   next: (response) => {
+    //     alert('Added To Cart Successfully!');
+    //   },
+    //   error: (err) => {
+    //     console.error('Error:', err);
+    //   },
+    // });
   }
 }

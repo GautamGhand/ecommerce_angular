@@ -16,7 +16,7 @@
           class="hover:text-gray-200 transition-colors">Users</a>
 
         <a routerLink="/cart" routerLinkActive="font-bold border-b-2 border-white"
-          class="hover:text-gray-200 transition-colors">Cart</a>
+          class="hover:text-gray-200 transition-colors">Cart <span>{{cartCount$ | async}}</span></a>
         <a routerLink="/login" routerLinkActive="font-bold border-b-2 border-white"
           class="hover:text-gray-200 transition-colors">Login</a>
       </nav>
@@ -49,7 +49,7 @@
       class="block text-white hover:text-gray-200">Users</a>
 
     <a routerLink="/cart" (click)="toggleMenu()" routerLinkActive="font-bold underline"
-      class="block text-white hover:text-gray-200">Cart</a>
+      class="block text-white hover:text-gray-200">Cart <span>{{cartCount$ | async}}</span></a>
     <a routerLink="/login" (click)="toggleMenu()" routerLinkActive="font-bold underline"
       class="block text-white hover:text-gray-200">Login</a>
   </nav>
