@@ -16,10 +16,6 @@ export class Header {
   private store = inject(Store);
   cartCount$: Observable<number> = this.store.select(selectCount);
 
-  ngOnInit() {
-    this.cartCount$.subscribe((count) => console.log('Cart count:', count));
-  }
-
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
   }
