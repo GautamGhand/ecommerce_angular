@@ -40,7 +40,7 @@ export class Productview {
   addToCart(id: number) {
     this.cartService.addToCart().subscribe({
       next: (response) => {
-        console.log('Cart response:', response);
+        alert('Added To Cart Successfully!');
       },
       error: (err) => {
         console.error('Error:', err);
